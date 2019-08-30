@@ -11,7 +11,7 @@ class LimitSizeStream extends stream.Transform {
   _transform(chunk, encoding, callback) {
     this.sendedBytes += chunk.length; // суммируем количество переданных данных
     if (this.sendedBytes > this.limit) { // если превышает
-      callback(new LimitExceededError, null); // вызываем об ошибке
+      callback(new LimitExceededError(), null); // вызываем об ошибке
     }
 
     this.push(chunk); // передача дальше данных
