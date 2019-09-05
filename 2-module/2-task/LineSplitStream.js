@@ -16,17 +16,17 @@ class LineSplitStream extends stream.Transform {
     if (line[line.length - 1]) { // проверка на конечный элемент
       this.lines = line.pop(); // записываем поледний элемент в хранилище
     }
-    console.log('lines2 = ', this.lines, 'line = ', line);
+    // console.log('lines2 = ', this.lines, 'line = ', line);
 
     if (count === -1) { // если os.EOL нет в строке
-      console.log('lines1 = ', this.lines, 'line = ', line);
+      // console.log('lines1 = ', this.lines, 'line = ', line);
       callback(); // данные убраны в хранилище, получаем новые данные
     }
     // console.log('line = ', line, ' count = ', count);
 
     if (count !== -1) { // если os.EOL есть в строке
       line.forEach( (item, i) => {
-        console.log('item = ', item);
+        // console.log('item = ', item);
         this.push(item); // отправляем все куски между EOL
       });
       callback();
@@ -34,7 +34,7 @@ class LineSplitStream extends stream.Transform {
   }
 
   _flush(callback) { // непонятно как использовать
-    console.log('lines = ', this.lines);
+    // console.log('lines = ', this.lines);
     this.push(this.lines); // надо сохранить значения из push?
     callback();
   }
